@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net11.0</TargetFramework>
+    <LangVersion>preview</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+
+    <!-- Microsoft Test Platform (MTP) configuration -->
+    <EnableMSTestRunner>true</EnableMSTestRunner>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MSTest" Version="4.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Domain\*.cs" Link="Domain\%(Filename).cs" />
+    <Compile Include="..\Application\*.cs" Link="Application\%(Filename).cs" />
+    <Compile Include="..\Serialization\*.cs" Link="Serialization\%(Filename).cs" />
+    <Compile Include="OrderStateTests.cs" />
+    <Compile Include="OrderResultTests.cs" />
+    <Compile Include="OrderServiceTests.cs" />
+    <Compile Include="ExhaustivenessTests.cs" />
+  </ItemGroup>
+
+</Project>
