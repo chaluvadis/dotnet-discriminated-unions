@@ -14,12 +14,6 @@ A minimal ASP.NET Core Web API demonstrating **C# 15 union types**, an experimen
 <ImplicitUsings>enable</ImplicitUsings>
 ```
 
-Verify your SDK:
-
-```bash
-dotnet --version
-```
-
 ## What This Demonstrates
 
 ### Union types
@@ -39,24 +33,6 @@ public record class Shipped(DateTimeOffset ShippedAt, string TrackingNumber);
 public record class Delivered(DateTimeOffset DeliveredAt);
 public record class Cancelled(DateTimeOffset CancelledAt, string Reason);
 ```
-
-### Exhaustive pattern matching
-
-```csharp
-var label = order.State.Value switch
-{
-    Pending p => $"Pending since {p.CreatedAt}",
-    Confirmed c => $"Confirmed at {c.ConfirmedAt}",
-    Shipped s => $"Shipped: {s.TrackingNumber}",
-    Delivered d => $"Delivered at {d.DeliveredAt}",
-    Cancelled c => $"Cancelled: {c.Reason}",
-};
-```
-
-The compiler reports **CS8509** when a case is missing.
-
-This means adding a new union case forces every consumer to handle it.
-
 ## API Results
 
 The API also models expected outcomes as a union:
